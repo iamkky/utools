@@ -1,0 +1,15 @@
+#!/bin/sh
+
+if [ "$1" = "" ]
+then
+        RANDOM=$$
+        R=$(($RANDOM%4))
+        G=$(($RANDOM%4))
+        B=$(($RANDOM%4))
+        printf '\e]11;#%3.3d\a' $R$G$B
+else
+        printf '\e]11;#%3.3d\a' $1
+fi
+
+#echo -ne '\e]11;?\a'; cat
+#^[]11;rgb:0000/1010/5050^G^C
