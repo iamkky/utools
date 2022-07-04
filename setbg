@@ -1,14 +1,38 @@
 #!/bin/sh
 
+if [ "$1" = "-h" ]
+then
+        echo "Usage: $0 [-h] [-e] [color]"
+        echo
+        echo " -e    : prints randomly selected color"
+        echo " -h    : help "
+        echo " color : Color to use, if not present uses a random color in 111-444 range "
+        echo
+        exit
+fi
+
+if [ "$1" = "-e" ]
+then
+        echocolor="true"
+        shift
+fi
+
 if [ "$1" = "" ]
 then
         RANDOM=$$
-        R=$(($RANDOM%4))
-        G=$(($RANDOM%4))
-        B=$(($RANDOM%4))
-        printf '\e]11;#%3.3d\a' $R$G$B
+        R=$(($RANDOM%3+1))
+        G=$(($RANDOM%3+1))
+        B=$(($RANDOM%3+1))
+        COLOR=$R$G$B
 else
-        printf '\e]11;#%3.3d\a' $1
+        COLOR=$1
+fi
+
+printf '\e]11;#%3.3d\a' $COLOR
+
+if [ "$echocolor" = "true" ]
+then
+        echo $COLOR
 fi
 
 #echo -ne '\e]11;?\a'; cat
