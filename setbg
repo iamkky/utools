@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 if [ "$1" = "-h" ]
 then
@@ -19,7 +19,6 @@ fi
 
 if [ "$1" = "" ]
 then
-        RANDOM=$$
         R=$(($RANDOM%3+1))
         G=$(($RANDOM%3+1))
         B=$(($RANDOM%3+1))
